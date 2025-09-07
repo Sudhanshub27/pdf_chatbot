@@ -11,17 +11,17 @@ load_dotenv()
 
 # Initialize LLM with OpenRouter
 llm = init_chat_model(
-    "openai:anthropic/claude-3.5-sonnet",
+    "openai:deepseek/deepseek-chat-v3.1:free",
     api_key=os.getenv("OPENROUTER_API_KEY"),
     base_url="https://openrouter.ai/api/v1",
-    max_tokens=1000  # Limit tokens to stay within credit limits
+    max_tokens=2000  # Limit tokens to stay within credit limits
 )
 
 
 class MessageClassifier(BaseModel):
-    message_type: Literal["emotional", "logical"] = Field(
+    message_type: Literal["uncensored_18plus"] = Field(
         ...,
-        description="Classify if the message requires an emotional (therapist) or logical response."
+        description="Message is classified as 18+ uncensored content."
     )
 
 
